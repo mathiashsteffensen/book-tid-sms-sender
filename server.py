@@ -25,13 +25,13 @@ def run():
     @server.route('/schedule-text', methods=["POST"])
     def schedule_text():
         body = request.json
-
+        print(body)
         receiver_name = body["receiver"]["name"]
         business_name = body["businessName"]
         service = body["service"]
         time_of_appointment = arrow.get(int(body["appointmentAt"])).shift(hours=1).format("DD. MMMM kl. HH:mm", locale="da")
 
-        print(body)
+        
 
         msg = f"""Kære {receiver_name}
 
