@@ -16,7 +16,7 @@ class SMS_Sender():
             ],
             "sendtime": send_at
         }
-
+        print(payload)
         resp = requests.post(
             "https://gatewayapi.com/rest/mtsms",
             json=payload,

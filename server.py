@@ -25,13 +25,13 @@ def run():
     @server.route('/schedule-text', methods=["POST"])
     def schedule_text():
         body = request.json
+
         print(body)
+
         receiver_name = body["receiver"]["name"]
         business_name = body["businessName"]
         service = body["service"]
         time_of_appointment = arrow.get(int(body["appointmentAt"])).shift(hours=1).format("DD. MMMM kl. HH:mm", locale="da")
-
-        
 
         msg = f"""Kære {receiver_name}
 
@@ -58,5 +58,10 @@ Venlig Hilsen
         db.close()
 
         return body
+
+    # For health checks from AWS
+    @server.route('/health', methods=["GET"])
+    def health():
+        return 'Looking good'
 
     return server
